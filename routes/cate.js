@@ -47,7 +47,7 @@ router.post('/them-cate.html', checkAdmin, async function(req, res, next) {
 				nameKhongDau: bodauTiengViet(req.body.name)
 			});
 			await cate.save();
-			req.flash('success_msg', 'Đã Thêm Thành Công');
+			req.flash('success_msg', 'Added Successfully');
 			res.redirect('/admin/cate/them-cate.html');
 		} catch (err) {
 			console.log(err);
@@ -82,7 +82,7 @@ router.post('/:id/sua-cate.html', checkAdmin, async (req, res, next) => {
 			data.name = req.body.name;
 			data.nameKhongDau = bodauTiengViet(req.body.name);
 			await data.save();
-			req.flash('success_msg', 'Đã Sửa Thành Công');
+			req.flash('success_msg', 'Edit Successfully');
 			res.redirect('/admin/cate/' + req.params.id + '/sua-cate.html');
 		} catch (err) {
 			next(err);
@@ -93,7 +93,7 @@ router.post('/:id/sua-cate.html', checkAdmin, async (req, res, next) => {
 router.get('/:id/xoa-cate.html', checkAdmin, async (req, res, next) => {
 	try {
 		await Cate.findByIdAndRemove(req.params.id).exec();
-		req.flash('success_msg', 'Đã Xoá Thành Công');
+		req.flash('success_msg', 'Deleted');
 		res.redirect('/admin/cate/danh-sach.html');
 	} catch (err) {
 		next(err);

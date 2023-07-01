@@ -78,7 +78,7 @@ router.post('/them-product.html', checkAdmin, upload.single('hinh'), function (r
 		});
 
 		pro.save().then(function(){
-			req.flash('success_msg', 'Đã Thêm Thành Công');
+			req.flash('success_msg', 'm Thành Công');
 			res.redirect('/admin/product/them-product.html');
 		});
 	}
@@ -119,7 +119,7 @@ router.post('/:id/sua-product.html',  upload.single('hinh'), async function (req
 				data.img 			= req?.file?.filename;
 			}
 			await data.save();
-			req.flash('success_msg', 'Đã Sửa Thành Công');
+			req.flash('success_msg', 'Edit Successfully');
 			res.redirect('/admin/product/'+req.params.id+'/sua-product.html');
 		}
 	} catch (err) {
@@ -131,7 +131,7 @@ router.get('/:id/xoa-product.html', checkAdmin, async function (req, res) {
 	try {
 		var data = await Product.findById(req.params.id);
 		await Product.findByIdAndRemove(req.params.id).exec();
-		req.flash('success_msg', 'Đã Xoá Thành Công');
+		req.flash('success_msg', 'Deleted');
 		res.redirect('/admin/product/danh-sach.html');
 	} catch (err) {
 		console.log(err);
